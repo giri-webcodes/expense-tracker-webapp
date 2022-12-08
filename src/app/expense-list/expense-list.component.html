@@ -1,0 +1,21 @@
+<h2>Expense List</h2>
+
+<table id="table">
+    <thead>
+       <tr>
+        <th>expense</th>
+        <th>amount</th>
+        <th>date</th>
+        <th>comment</th>
+       </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of expenseList">
+            <td>{{e.expense}}</td>
+            <td>{{e.amount |currency:'INR'}}</td>
+            <td>{{e.date | date:'shortDate'}}</td>
+            <td>{{e.comment}}</td>
+        </tr>
+    </tbody>
+
+</table>
