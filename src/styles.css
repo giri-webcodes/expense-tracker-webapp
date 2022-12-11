@@ -138,10 +138,13 @@
   }
   
   /*html table*/
+  span{
+    color: red;
+  }
   #table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width:100%;
   }
   
   #table td, #table th {

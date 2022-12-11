@@ -1,0 +1,42 @@
+<div>
+    <h3>{{expense.expense}} Detail</h3>
+    <table id="table">
+       
+        <tbody>
+            <tr>
+                <td>
+                    <label>Expense</label>
+                </td>
+                <td>
+                    {{expense.expense}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Amount</label>
+                </td>
+                <td>
+                  <span>{{expense.amount | currency:'INR'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Date</label>
+                </td>
+                <td>
+                    {{expense.date | date: 'shortDate'}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Comment</label>
+                </td>
+                <td>
+                    {{expense.comment}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a [routerLink]="['/']" >Back</a>
+</div>

@@ -11,8 +11,14 @@
     </thead>
     <tbody>
         <tr *ngFor="let e of expenseList">
-            <td>{{e.expense}}</td>
-            <td>{{e.amount |currency:'INR'}}</td>
+            <td>               
+            <a [title]="e.expense +' detail'" [routerLink]="['/expense',e.id]">
+                {{e.expense}}
+            </a>
+            </td>
+            <td>
+               <span>{{e.amount |currency:'INR'}}</span>
+            </td>
             <td>{{e.date | date:'shortDate'}}</td>
             <td>{{e.comment}}</td>
         </tr>
