@@ -1,5 +1,29 @@
+<div id="listContainer">
 <h2>Expense List</h2>
 
+<div>
+    <table>
+        <tbody>
+          <tr>            
+            <td>
+                <select [(ngModel)]="selectedMonth" (change)="getData()">
+                    <option [value]="item.id" *ngFor="let item of monthList">
+                        {{item.value}}
+                    </option>
+                </select>
+            </td>
+             <td>
+                <select [(ngModel)]="selectedYear" (change)="getData()">
+                    <option [value]="item.value" *ngFor="let item of yearList">
+                        {{item.value}}
+                    </option>
+                </select>
+             </td>
+          </tr>
+        </tbody>
+    </table>
+  
+</div>
 <table id="table">
     <thead>
        <tr>
@@ -23,5 +47,12 @@
             <td>{{e.comment}}</td>
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <td>Total Expense</td>
+            <td colspan="3"><span style="font-weight:bold;">{{totalExpense | currency:'INR'}}</span></td>
+        </tr>
+    </tfoot>
 
 </table>
+</div>
