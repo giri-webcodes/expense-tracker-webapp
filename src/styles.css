@@ -9,10 +9,6 @@
     margin: 0;
   }
   
-  
-  
-  
-  
   /* Text */
   
   h1 {
@@ -52,6 +48,14 @@
     margin-bottom: 16px;
     border: 1px solid #BDBDBD;
   }
+
+  select{
+    font-size: 14px;
+    border-radius: 2px;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #BDBDBD;
+  }
   
   label {
     font-size: 12px;
@@ -84,17 +88,6 @@
     cursor: auto;
   }
   
-  /* Fancy Button */
-  
-  .fancy-button {
-    background-color: white;
-    color: #1976d2;
-  }
-  
-  .fancy-button i.material-icons {
-    color: #1976d2;
-    padding-right: 4px;
-  }
   
   /* Top Bar */
   
@@ -143,3 +136,21 @@
     background-color: #04AA6D;
     color: white;
   }
+
+  /* Top Bar */
+
+app-top-bar {
+  width: 100%;
+  height: 10%;
+  background-color: #1976d2;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+app-top-bar h2 {  
+  color: white;
+  margin: 0;
+}

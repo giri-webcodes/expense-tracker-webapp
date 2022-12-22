@@ -1,0 +1,16 @@
+<form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+
+    <label for="expense">Expense: </label>
+    <input id="expense" type="text" formControlName="expense">
+  
+    <label for="amount">Amount: </label>
+    <input id="amount" type="text" formControlName="amount">
+
+    <label for="date">Date: </label>
+    <input id="date" type="date" formControlName="date">
+
+    <label for="comment">Comment: </label>
+    <textarea id="comment" cols="25" rows="3" maxlength="50" formControlName="comment"></textarea>    
+    <br/>
+    <button type="submit" [disabled]="!expenseForm.valid">Submit</button>
+  </form>

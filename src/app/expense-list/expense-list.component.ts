@@ -21,8 +21,9 @@ export class ExpenseListComponent implements OnInit {
    public selectedYear:number=0;
 
    ngOnInit(){    
-    this.selectedMonth=new Date().getMonth()+1;
-    this.selectedYear=new Date().getFullYear();       
+    this.selectedMonth=new Date().getMonth()+1;    
+    this.selectedYear=new Date().getFullYear(); 
+    this.getData();      
    }
 
       
@@ -31,7 +32,7 @@ export class ExpenseListComponent implements OnInit {
     this.filterList=[];
     this.expenseList=expenseList;
     this.totalExpense=0;
-    
+
     this.expenseList.forEach(x=>{
       var dt = new Date(x.date);            
       if(Number(dt.getMonth()+1) == this.selectedMonth && dt.getFullYear() == this.selectedYear)
