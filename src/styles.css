@@ -1,13 +1,4 @@
 /* Global Styles */
-
-* {
-    font-family: 'Roboto', Arial, sans-serif;
-    color: #616161;  
-  }
-  
-  body {
-    margin: 0;
-  }
   
   /* Text */
   
@@ -88,27 +79,7 @@
     cursor: auto;
   }
   
-  
-  /* Top Bar */
-  
-  app-top-bar {
-    width: 100%;
-    height: 68px;
-    background-color: #1976d2;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  app-top-bar h1 {
-    color: white;
-    margin: 0;
-  }
- 
-  
-  
+    
   /*html table*/
   span{
     color: red;
@@ -136,21 +107,7 @@
     background-color: #04AA6D;
     color: white;
   }
+ 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-  /* Top Bar */
-
-app-top-bar {
-  width: 100%;
-  height: 10%;
-  background-color: #1976d2;
-  padding: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-app-top-bar h2 {  
-  color: white;
-  margin: 0;
-}
