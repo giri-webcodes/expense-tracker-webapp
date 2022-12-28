@@ -1,4 +1,6 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { expenseList } from '../expenselist';
 import { monthList } from '../expenselist';
 import { yearList } from '../expenselist';
@@ -11,7 +13,11 @@ import { Expense } from '../expenselist';
 })
 
 export class ExpenseListComponent implements OnInit {
-   expenseList=expenseList;
+  public expenseList=new MatTableDataSource<any>([]);
+  
+   headerColumns:string[]=['expense','amount','date','comment'];
+
+   @ViewChild(MatPaginator)  paginator: MatPaginator;
    monthList=monthList;
    yearList=yearList;
    totalExpense:number=0;
@@ -26,14 +32,18 @@ export class ExpenseListComponent implements OnInit {
     this.getData();      
    }
 
+   ngAfterViewInit(){
+    this.expenseList.paginator=this.paginator;
+   }
+
       
    public getData(){
             
     this.filterList=[];
-    this.expenseList=expenseList;
+    this.expenseList.data=expenseList;
     this.totalExpense=0;
 
-    this.expenseList.forEach(x=>{
+    this.expenseList.data.forEach(x=>{
       var dt = new Date(x.date);            
       if(Number(dt.getMonth()+1) == this.selectedMonth && dt.getFullYear() == this.selectedYear)
       {                
@@ -42,6 +52,6 @@ export class ExpenseListComponent implements OnInit {
       }      
     });
 
-    this.expenseList=this.filterList;     
+    this.expenseList.data=this.filterList;     
    }      
 }

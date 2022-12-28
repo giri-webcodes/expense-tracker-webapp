@@ -1,7 +1,22 @@
-#listContainer{
- padding: 2% 2%;
+#table {
+    width: 100%;
+    padding: 0% 2%;
+    background-color: azure;
+}
+#filterdiv{
+    padding-left: 2%;
 }
 
-#addContainer{
-    padding:2.5%;
+#table td,
+#table th {
+    padding: 8px;
+   
+}
+
+/* #table tr:nth-child(even) {
+    background-color: #f2f2f2;
+} */
+
+#table tr:hover {
+    background-color:aliceblue;
 }
