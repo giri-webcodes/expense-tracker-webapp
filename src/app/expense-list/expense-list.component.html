@@ -56,7 +56,7 @@
 
     <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>Date</th>
-         <td mat-cell *matCellDef="let expenseList">{{expenseList.date | date:'shortDate'}}</td>
+         <td mat-cell *matCellDef="let expenseList">{{expenseList.date | date:'dd/MM/yyyy'}}</td>
     </ng-container>
 
     <!-- <ng-container matColumnDef="comment">
