@@ -1,43 +1,25 @@
+<form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
 
-<div id="editContainer">
-    <h3>{{expense.expense}} Detail</h3>
-    <table id="table">
-       
-        <tbody>
-            <tr>
-                <td>
-                    <label>Expense</label>
-                </td>
-                <td>
-                    {{expense.expense}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Amount</label>
-                </td>
-                <td>
-                  <span>{{expense.amount | currency:'INR'}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Date</label>
-                </td>
-                <td>
-                    {{expense.date | date: 'shortDate'}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Comment</label>
-                </td>
-                <td>
-                    {{expense.comment}}
-                </td>
-            </tr>
-        </tbody>
+    <label for="expense">Expense: </label>
+    <input id="expense" type="text" formControlName="expense">
+  
+    <label for="amount">Amount: </label>
+    <input id="amount" type="text" formControlName="amount">
+
+    <label for="date">Date: </label>
+    <input id="date" type="date" formControlName="date">
+
+    <label for="comment">Comment: </label>
+    <textarea id="comment" cols="25" rows="3" maxlength="50" formControlName="comment"></textarea>    
+    <br/>
+    <table>
+        <tr>
+            <td>
+                <button type="submit" [disabled]="!expenseForm.valid">Submit</button>
+            </td>
+            <td>
+               <button  (click)="goToHome()" type="button">Back</button>
+            </td>
+        </tr>
     </table>
-
-    <a [routerLink]="['/']" >Back</a>
-</div>
+  </form>
