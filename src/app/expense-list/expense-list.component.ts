@@ -15,7 +15,7 @@ import { Expense } from '../expenselist';
 export class ExpenseListComponent implements OnInit {
   public expenseList=new MatTableDataSource<any>([]);
   
-   headerColumns:string[]=['expense','amount','date','comment'];
+   headerColumns:string[]=['expense','amount','date'];
 
    @ViewChild(MatPaginator)  paginator: MatPaginator;
    monthList=monthList;

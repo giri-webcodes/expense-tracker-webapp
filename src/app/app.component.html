@@ -1,8 +1,16 @@
 <p>
-  <mat-toolbar color="primary">    
+  <mat-toolbar  color="primary"> 
+    <span>  
     <a  [routerLink]="['/']">
       <h2 style="color:white">Expense Tracker</h2>
     </a>
+    </span>
+   <span class="menu"></span>
+    <span >
+    <a  [routerLink]="['/add']">
+      <h2 style="color:white">Add Expense</h2>
+    </a>
+    </span>
   </mat-toolbar>
 </p>
 <div class="container">

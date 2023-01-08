@@ -22,6 +22,7 @@ export class AddComponent implements OnInit {
 
   onSubmit(){
     console.log(this.expenseForm.value);
+    
   }
 
 }

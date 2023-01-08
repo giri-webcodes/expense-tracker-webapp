@@ -70,17 +70,12 @@ export const yearList: DropDown[] = [];
 
 yearList.push({
   id: 1,
-  value: '2020'
+  value: '2022'
 });
 
 yearList.push({
   id: 2,
-  value: '2021'
-});
-
-yearList.push({
-  id: 3,
-  value: '2022'
+  value: '2023'
 });
 
 export const expenseList = [
