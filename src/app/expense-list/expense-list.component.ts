@@ -19,6 +19,7 @@ export class ExpenseListComponent implements OnInit {
 
    @ViewChild(MatPaginator)  paginator: MatPaginator;
    monthList=monthList;
+   strMonth:any;
    yearList=yearList;
    totalExpense:number=0;
    filterList:Expense[]=[];
@@ -29,6 +30,8 @@ export class ExpenseListComponent implements OnInit {
    ngOnInit(){    
     this.selectedMonth=new Date().getMonth()+1;    
     this.selectedYear=new Date().getFullYear(); 
+    this.strMonth= monthList.find(x=>x.id==this.selectedMonth)?.value;
+
     this.getData();      
    }
 
@@ -42,6 +45,7 @@ export class ExpenseListComponent implements OnInit {
     this.filterList=[];
     this.expenseList.data=expenseList;
     this.totalExpense=0;
+    this.strMonth= monthList.find(x=>x.id==this.selectedMonth)?.value;
 
     this.expenseList.data.forEach(x=>{
       var dt = new Date(x.date);            

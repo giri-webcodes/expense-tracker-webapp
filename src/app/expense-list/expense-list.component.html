@@ -1,9 +1,21 @@
 <div>
 
 <div id="filterdiv">
-    <h2>Expense List</h2>
     <table>
         <tbody>
+            <tr>
+                <td>
+                    <h2>{{strMonth}}-{{selectedYear}} | </h2> 
+                </td>             
+                <td>
+                    <h2 >Total Expense: <span style="color:red;font-weight:bold"> {{totalExpense | currency:'INR' }} </span></h2>
+                </td>               
+            </tr>
+        </tbody>
+    </table>
+    
+    <table>
+        <tbody>          
           <tr>            
             <td>
                 <select [(ngModel)]="selectedMonth" (change)="getData()">
@@ -19,6 +31,7 @@
                     </option>
                 </select>
              </td>
+           
           </tr>
         </tbody>
     </table>
