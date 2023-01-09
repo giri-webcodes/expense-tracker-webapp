@@ -1,7 +1,7 @@
 import { Component,OnInit,ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { expenseList } from '../expenselist';
 import { monthList } from '../expenselist';
 import { yearList } from '../expenselist';
@@ -31,20 +31,35 @@ export class ExpenseListComponent implements OnInit {
    public selectedMonth:number=0;
    public selectedYear:number=0;
 
-   constructor(private router:Router){
-
+   constructor(private router:Router, private route:ActivatedRoute){
    }
 
-   ngOnInit(){    
-    this.selectedMonth=new Date().getMonth()+1;    
-    this.selectedYear=new Date().getFullYear(); 
-    this.strMonth= monthList.find(x=>x.id==this.selectedMonth)?.value;
+   ngOnInit(){     
+    this.route.queryParams.subscribe(params=>{
+      if(params['pageIndex'])
+      {
+          this.pageIndex=params['pageIndex'];
+          this.selectedMonth=params['month'];
+          this.selectedYear=params['year'];          
+      }else{
+        this.selectedMonth=new Date().getMonth()+1;    
+        this.selectedYear=new Date().getFullYear(); 
+      }
 
-    this.getData();      
+    });
+        
+    this.strMonth= monthList.find(x=>x.id==this.selectedMonth)?.value;     
    }
 
    ngAfterViewInit(){
-    this.expenseList.paginator=this.paginator;
+   
+    this.expenseList.paginator=this.paginator; 
+    setTimeout(()=>{
+      this.paginator.pageIndex=this.pageIndex;      
+      this.getData()
+    },0);  
+    
+                    
    }
 
       

@@ -7,7 +7,8 @@ import { AddComponent } from './add/add.component';
 const routes: Routes = [
   {path:'',component:ExpenseListComponent },
   {path:'add',component:AddComponent},
-  {path:'expense/edit',component:EditComponent}  
+  {path:'expense/edit',component:EditComponent},
+  {path:'expenselist',component:ExpenseListComponent}  
 ];
 
 @NgModule({

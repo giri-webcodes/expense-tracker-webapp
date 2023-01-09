@@ -13,6 +13,9 @@ export class EditComponent implements OnInit {
 
   expenseobj: Expense;
   expenseForm: FormGroup;
+  pageIndex:Number=0;
+  selectedMonth:Number=0;
+  selectedYear:Number=0;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
   }
@@ -23,6 +26,9 @@ export class EditComponent implements OnInit {
     let id:Number=0;
     this.route.queryParams.subscribe(params=>{
        id=params['expenseId'];
+       this.selectedMonth=params['month'];
+       this.selectedYear=params['year'];
+       this.pageIndex=params['pageIndex'];
     });
 
     let jsonStr = JSON.stringify(expenseList.find(x => x.id == id));
@@ -42,7 +48,12 @@ export class EditComponent implements OnInit {
   }
 
   goToHome(){
-    this.router.navigate(['/']);
+    this.router.navigate(['/expenselist'],{
+      queryParams:{
+        pageIndex:this.pageIndex,
+    month:this.selectedMonth,year:this.selectedYear
+      }
+    });
   }
 
 }
