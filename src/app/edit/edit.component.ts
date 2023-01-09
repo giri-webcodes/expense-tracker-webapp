@@ -18,8 +18,13 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    const id = Number(routeParams.get('expenseId'));
+    // const routeParams = this.route.snapshot.paramMap;
+    // const id = Number(routeParams.get('expenseId'));
+    let id:Number=0;
+    this.route.queryParams.subscribe(params=>{
+       id=params['expenseId'];
+    });
+
     let jsonStr = JSON.stringify(expenseList.find(x => x.id == id));
     let json = JSON.parse(jsonStr);
     this.expenseobj = json as Expense;
@@ -27,7 +32,7 @@ export class EditComponent implements OnInit {
     this.expenseForm = this.fb.group({
       expense: new FormControl([this.expenseobj.expense]),
       amount: new FormControl([this.expenseobj.amount]),
-      date: new FormControl([new Date(this.expenseobj.date)]),
+      date: new FormControl([this.expenseobj.date.split("T")[0]]),
       comment: new FormControl([this.expenseobj.comment])
     });
   }
