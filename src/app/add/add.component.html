@@ -1,16 +1,47 @@
-<form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
-
-    <label for="expense">Expense: </label>
-    <input id="expense" type="text" formControlName="expense">
+<div id="editContainer">
+  <h2>Add Expense</h2>
   
-    <label for="amount">Amount: </label>
-    <input id="amount" type="text" formControlName="amount">
-
-    <label for="date">Date: </label>
-    <input id="date" type="date" formControlName="date">
-
-    <label for="comment">Comment: </label>
-    <textarea id="comment" cols="25" rows="3" maxlength="50" formControlName="comment"></textarea>    
-    <br/>
-    <button type="submit" [disabled]="!expenseForm.valid">Submit</button>
-  </form>
+  <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+      <table>
+          <tr>
+              <td>
+              <label for="expense">Expense: </label>
+          </td>
+          <td>
+              <input id="expense" type="text" formControlName="expense">
+          </td>
+          </tr>
+      <tr>
+          <td>
+              <label for="amount">Amount: </label>
+          </td>
+          <td>
+              <input id="amount" type="text" formControlName="amount">
+          </td>
+      </tr>
+      
+    <tr>
+      <td>
+          <label for="date">Date: </label>
+      </td>
+      <td>
+          <input id="date" type="date" formControlName="date">
+      </td>
+    </tr>
+      <tr>
+          <td colspan="2">
+              <textarea id="comment" cols="25" rows="3" placeholder="optional comment" maxlength="50" formControlName="comment"></textarea>  
+          </td>
+      </tr>          
+          <tr>
+              <td>
+                  <button type="submit" [disabled]="!expenseForm.valid">Submit</button>
+              </td>
+              <td>
+                 <button  (click)="goToHome()" type="button">Back</button>
+              </td>
+          </tr>
+      </table>
+    </form>
+  </div>
+  
