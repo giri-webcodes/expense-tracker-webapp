@@ -2,7 +2,6 @@ import { Component,OnInit,ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { expenseList } from '../expenselist';
 import { monthList } from '../expenselist';
 import { yearList } from '../expenselist';
 import { Expense } from '../expenselist';
@@ -66,7 +65,14 @@ export class ExpenseListComponent implements OnInit {
    public getData(){
             
     this.filterList=[];
-    this.expenseList.data=expenseList;
+
+    //local storage
+    if(localStorage.getItem('expList') !== null){
+     let list:Expense[]= JSON.parse(localStorage.getItem('expList')!);      
+      this.expenseList.data=list;
+    }
+
+    
     this.totalExpense=0;
     this.strMonth= monthList.find(x=>x.id==this.selectedMonth)?.value;
 

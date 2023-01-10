@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Expense } from '../expenselist';
 
 @Component({
   selector: 'app-add',
@@ -9,9 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddComponent implements OnInit {
 
-  pageIndex:Number=0;
-  selectedMonth:Number=0;
-  selectedYear:Number=0;
+  pageIndex: Number = 0;
+  selectedMonth: Number = 0;
+  selectedYear: Number = 0;
 
   expenseForm = new FormGroup({
     expense: new FormControl(''),
@@ -20,26 +21,46 @@ export class AddComponent implements OnInit {
     comment: new FormControl('')
   });
 
-  constructor(private route: ActivatedRoute,private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.route.queryParams.subscribe(params=>{
-      this.pageIndex=params['pageIndex'];
-      this.selectedMonth=params['month'];
-      this.selectedYear=params['year'];
+    this.route.queryParams.subscribe(params => {
+      this.pageIndex = params['pageIndex'];
+      this.selectedMonth = params['month'];
+      this.selectedYear = params['year'];
     });
   }
 
-  onSubmit(){
-    console.log(this.expenseForm.value);    
+  onSubmit() {
+
+    let array:Expense[]=[];
+    if (localStorage.getItem("expList") !== null) {
+      array = JSON.parse(localStorage.getItem('expList')!);    
+    }
+
+    var count =array.length+1;
+    var found =array.findIndex(e=>e.id===count);
+    if(found != -1){
+      count = count +1;
+    }
+    array.push({id:count,expense:this.expenseForm.value.expense!,amount:parseFloat(this.expenseForm.value.amount!),
+      date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment!});
+
+      localStorage.setItem('expList',JSON.stringify(array));
+
+      var alert = document.getElementById("alert")!;     
+      alert.style.display = 'block';          
+setTimeout(function (){
+  alert.style.display = 'none'; 
+},1000);
   }
 
-  goToHome(){
-    this.router.navigate(['/expenselist'],{
-      queryParams:{
-        pageIndex:this.pageIndex,
-    month:this.selectedMonth,year:this.selectedYear
+  goToHome() {
+    this.router.navigate(['/expenselist'], {
+      queryParams: {
+        pageIndex: this.pageIndex,
+        month: this.selectedMonth, year: this.selectedYear
       }
     });
   }

@@ -4,10 +4,12 @@
 
 h1 {
   font-size: 32px;
+  color:coral;
 }
 
 h2 {
   font-size: 20px;
+  color:coral;
 }
 
 h1,
@@ -106,4 +108,8 @@ footer {
   color: red;
   padding-top: 2%;
   text-align: center;
+}
+
+#alert{
+  color:green;
 }

@@ -1,6 +1,5 @@
-<div id="editContainer">
-  <h2>Add Expense</h2>
-  
+<div id="addContainer">
+  <h2>Add Expense</h2> 
   <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
       <table>
           <tr>
@@ -43,5 +42,8 @@
           </tr>
       </table>
     </form>
+    <div id="alert" style="display: none;">
+        <strong>Successful:</strong> Expense Added
+      </div>
   </div>
   
