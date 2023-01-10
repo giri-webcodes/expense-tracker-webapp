@@ -33,7 +33,8 @@ export class ExpenseListComponent implements OnInit {
    constructor(private router:Router, private route:ActivatedRoute){
    }
 
-   ngOnInit(){     
+   ngOnInit(){ 
+    //localStorage.clear();    
     this.route.queryParams.subscribe(params=>{
       if(params['pageIndex'])
       {

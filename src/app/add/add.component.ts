@@ -54,6 +54,9 @@ export class AddComponent implements OnInit {
 setTimeout(function (){
   alert.style.display = 'none'; 
 },1000);
+this.expenseForm.reset();
+document.getElementById('expense')?.focus();
+
   }
 
   goToHome() {

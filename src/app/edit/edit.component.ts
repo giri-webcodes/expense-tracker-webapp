@@ -24,7 +24,7 @@ export class EditComponent implements OnInit {
     
     
     this.route.queryParams.subscribe(params=>{
-       this.id=params['expenseId'];
+       this.id=Number(params['expenseId']);
        this.selectedMonth=params['month'];
        this.selectedYear=params['year'];
        this.pageIndex=params['pageIndex'];
@@ -33,26 +33,30 @@ export class EditComponent implements OnInit {
    
     let list:Expense[]= JSON.parse(localStorage.getItem('expList')!);
     
-     this.expenseobj = list.find(x=>x.id==this.id)!;
+     this.expenseobj = list.find(x=>x.id===this.id)!;
        
     this.expenseForm = this.fb.group({
-      expense: new FormControl([this.expenseobj.expense]),
-      amount: new FormControl([this.expenseobj.amount]),
-      date: new FormControl([new Date(this.expenseobj.date).toISOString().substring(0, 10)]),
-      comment: new FormControl([this.expenseobj.comment])
+      expense: new FormControl(this.expenseobj.expense),
+      amount: new FormControl(this.expenseobj.amount),
+      date: new FormControl(new Date(this.expenseobj.date).toISOString().substring(0, 10)),
+      comment: new FormControl(this.expenseobj.comment)
     });
   }
 
   onSubmit() {    
-      let list:Expense[]= JSON.parse(localStorage.getItem('expList')!);       
-      var index = list.indexOf(this.expenseobj);
-      list.splice(index,1);
-      
-      list.push({id:this.id,expense:this.expenseForm.value.expense,amount:parseFloat(this.expenseForm.value.amount!),
-        date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment});
-
-      localStorage.clear();
+      let list:Expense[]= JSON.parse(localStorage.getItem('expList')!); 
+       let index = list.findIndex(x=>x.id===this.id);       
+       list.splice(index,1);                    
+      list.push({id:this.id,expense:this.expenseForm.value.expense!,amount:parseFloat(this.expenseForm.value.amount!),
+        date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment});          
       localStorage.setItem('expList',JSON.stringify(list));
+      var alert = document.getElementById("alert")!;     
+      alert.style.display = 'block';          
+setTimeout(function (){
+  alert.style.display = 'none'; 
+},1000);
+
+document.getElementById('expense')?.focus();
   }
 
   goToHome(){
