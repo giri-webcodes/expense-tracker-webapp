@@ -8,13 +8,16 @@
 }
 
 #table th{
-    background-color: azure;
+    background-color: mintcream;
+    border:none !important;
+    color:black;
+    padding: 8px;
+    
+    
 }
 
-#table td,
-#table th {
-    padding: 8px;
-    color:black;
+#table td{    
+    color:black;    
     border: 1px solid aliceblue;   
 }
 
@@ -23,8 +26,7 @@ mat-paginator.mat-paginator{
     border: 1px solid aliceblue;
 }
 
-#table  td:nth-child(2){
-	font-weight:bold;
+#table  td:nth-child(2){	
     color:red;
 }
 
@@ -33,5 +35,5 @@ mat-paginator.mat-paginator{
 } */
 
 #table tr:hover {
-    background-color:aliceblue;
+    background-color:azure;
 }
