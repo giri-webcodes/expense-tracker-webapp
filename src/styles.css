@@ -55,12 +55,12 @@ select {
   border: 1px solid #BDBDBD;
 }
 
-label {
+/*label {
   font-size: 12px;
   margin-bottom: 4px;
   display: block;
   text-transform: uppercase;
-}
+}*/
 
 /* Button */
 .button,
