@@ -1,49 +1,37 @@
 <div id="addContainer">
   <h2>Add Expense</h2> 
   <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
-      <table>
-          <tr>
-          <td>
+     
+          
+          
 <mat-form-field appearance="outline">
   <mat-label>Expense</mat-label>
 <input matInput id="expense" required="required" type="text" formControlName="expense">
 </mat-form-field>
-          </td>
-          </tr>
-      <tr>
-          <td>
+          
+          
+      
+         
      <mat-form-field appearance="outline">
   <mat-label>Amount</mat-label>
 <input id="amount" required="required" type="text" formControlName="amount">
 </mat-form-field>
-              
-          </td>
-      </tr>
-      
-    <tr>
-    
-      <td>
+             
      <mat-form-field appearance="outline">
   <mat-label>Date</mat-label>
 
           <input id="date" required="required" type="date" formControlName="date">
 </mat-form-field>
-      </td>
-    </tr>
-      <tr>
-          <td colspan="2">
+ 
               <textarea id="comment" cols="25" rows="3" placeholder="optional comment" maxlength="50" formControlName="comment"></textarea>  
-          </td>
-      </tr>          
-          <tr>
-              <td>
+          
                   <button type="submit" [disabled]="!expenseForm.valid">Submit</button>
-              </td>
-              <td>
+              
+              
                  <button  (click)="goToHome()" type="button">Back</button>
-              </td>
-          </tr>
-      </table>
+              
+         
+      
     </form>
     <div id="alert" style="display: none;">
         <strong>Successful:</strong> Expense Added
