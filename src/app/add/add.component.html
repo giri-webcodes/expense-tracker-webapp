@@ -1,40 +1,49 @@
 <div id="addContainer">
-  <h2>Add Expense</h2> 
-  <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
-     
-          
-          
-<mat-form-field appearance="outline">
-  <mat-label>Expense</mat-label>
-<input matInput id="expense" required="required" type="text" formControlName="expense">
-</mat-form-field>
-          
-          
-      
-         
-     <mat-form-field appearance="outline">
-  <mat-label>Amount</mat-label>
-<input id="amount" required="required" type="text" formControlName="amount">
-</mat-form-field>
-             
-     <mat-form-field appearance="outline">
-  <mat-label>Date</mat-label>
+<h2>Add Expense</h2>
 
-          <input id="date" required="required" type="date" formControlName="date">
-</mat-form-field>
- 
-              <textarea id="comment" cols="25" rows="3" placeholder="optional comment" maxlength="50" formControlName="comment"></textarea>  
-          
-                  <button type="submit" [disabled]="!expenseForm.valid">Submit</button>
-              
-              
-                 <button  (click)="goToHome()" type="button">Back</button>
-              
-         
-      
-    </form>
-    <div id="alert" style="display: none;">
-        <strong>Successful:</strong> Expense Added
-      </div>
+<form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+    <table>
+        <tr>
+            <td>
+            <label for="expense">Expense: </label>
+        </td>
+        <td>
+            <input id="expense" required="required" type="text" formControlName="expense">
+        </td>
+        </tr>
+    <tr>
+        <td>
+            <label for="amount">Amount: </label>
+        </td>
+        <td>
+            <input id="amount" required="required" type="text" formControlName="amount">
+        </td>
+    </tr>
+    
+  <tr>
+    <td>
+        <label for="date">Date: </label>
+    </td>
+    <td>
+        <input id="date" required="required" type="date" formControlName="date">
+    </td>
+  </tr>
+    <tr>
+        <td colspan="2">
+            <textarea id="comment" cols="25" rows="3" placeholder="optional comment" maxlength="50" formControlName="comment"></textarea>  
+        </td>
+    </tr>          
+        <tr>
+            <td>
+                <button type="submit" [disabled]="!expenseForm.valid">Submit</button>
+            </td>
+            <td>
+               <button  (click)="goToHome()" type="button">Back</button>
+            </td>
+        </tr>
+    </table>
+  </form>
+  <div id="alert" style="display: none;">
+    <strong>Successful:</strong> Expense Updated
   </div>
-  
+</div>
