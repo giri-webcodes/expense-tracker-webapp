@@ -3,9 +3,6 @@
   <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
       <table>
           <tr>
-              <td>
-              <label for="expense">Expense: </label>
-          </td>
           <td>
 <mat-form-field appearance="fill">
   <mat-label>Expense</mat-label>
@@ -15,19 +12,22 @@
           </tr>
       <tr>
           <td>
-              <label for="amount">Amount: </label>
-          </td>
-          <td>
-              <input id="amount" required="required" type="text" formControlName="amount">
+     <mat-form-field appearance="fill">
+  <mat-label>Amount</mat-label>
+<input id="amount" required="required" type="number" formControlName="amount">
+</mat-form-field>
+              
           </td>
       </tr>
       
     <tr>
+    
       <td>
-          <label for="date">Date: </label>
-      </td>
-      <td>
+     <mat-form-field appearance="fill">
+  <mat-label>Date</mat-label>
+
           <input id="date" required="required" type="date" formControlName="date">
+</mat-form-field>
       </td>
     </tr>
       <tr>
