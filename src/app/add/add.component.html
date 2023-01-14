@@ -1,47 +1,34 @@
 <div id="addContainer">
-<h2>Add Expense</h2>
-
 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
-    <table>
-        <tr>
-            <td>
-            <label for="expense">Expense: </label>
-        </td>
-        <td>
-            <input id="expense" required="required" type="text" formControlName="expense">
-        </td>
-        </tr>
-    <tr>
-        <td>
-            <label for="amount">Amount: </label>
-        </td>
-        <td>
-            <input id="amount" required="required" type="text" formControlName="amount">
-        </td>
-    </tr>
-    
-  <tr>
-    <td>
-        <label for="date">Date: </label>
-    </td>
-    <td>
-        <input id="date" required="required" type="date" formControlName="date">
-    </td>
-  </tr>
-    <tr>
-        <td colspan="2">
-            <textarea id="comment" cols="25" rows="3" placeholder="optional comment" maxlength="50" formControlName="comment"></textarea>  
-        </td>
-    </tr>          
-        <tr>
-            <td>
-                <button type="submit" [disabled]="!expenseForm.valid">Submit</button>
-            </td>
-            <td>
-               <button  (click)="goToHome()" type="button">Back</button>
-            </td>
-        </tr>
-    </table>
+    <h2>Add Expense</h2>
+   
+            <mat-form-field appearance="fill">
+                <mat-label>Expense</mat-label>                
+                <input matInput id="expense" required="required" type="text" formControlName="expense">
+              </mat-form-field>
+            <br/>
+      
+            <mat-form-field appearance="fill">
+                <mat-label>Amount</mat-label>
+                <input matInput id="amount" required="required" type="number" formControlName="amount">                
+              </mat-form-field>
+      <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Date</mat-label>
+            <input id="date" matInput required="required" type="date" formControlName="date">            
+          </mat-form-field>
+        
+   <br/>
+            <mat-form-field appearance="fill">
+                <mat-label>Comment</mat-label>
+                <textarea matInput id="comment" cols="25" rows="3" placeholder="optional comment" maxlength="50" formControlName="comment"></textarea>            
+              </mat-form-field>
+             
+       <br/>
+               <span class="btnspan"><button  type="submit" [disabled]="!expenseForm.valid">Submit</button></span>
+                       
+               <span class="btnspan"><button   (click)="goToHome()" type="button">Back</button></span>
+           
   </form>
   <div id="alert" style="display: none;">
     <strong>Successful:</strong> Expense Added

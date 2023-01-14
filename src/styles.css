@@ -1,3 +1,4 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 /* Global Styles */
 
 /* Text */
@@ -113,3 +114,5 @@ footer {
 #alert{
   color:green;
 }
+
+
