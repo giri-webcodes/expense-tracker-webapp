@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import { Expense } from '../expenselist';
+import {expenseTypes} from '../expenselist';
 
 @Component({
   selector: 'app-add',
@@ -13,6 +16,8 @@ export class AddComponent implements OnInit {
   pageIndex: Number = 0;
   selectedMonth: Number = 0;
   selectedYear: Number = 0;
+  filteredOptions: Observable<string[]>;
+  expTypeList=expenseTypes;
 
   expenseForm = new FormGroup({
     expense: new FormControl(''),
@@ -30,6 +35,17 @@ export class AddComponent implements OnInit {
       this.selectedMonth = params['month'];
       this.selectedYear = params['year'];
     });
+
+    //autocomplete
+    this.filteredOptions=this.expenseForm.controls.expense.valueChanges.pipe(
+      startWith(''),
+      map(value=>this._filter(value || '')),
+    );
+  }
+
+  private _filter(value: string): string[]{
+    const filterValue=value.toLowerCase();
+    return this.expTypeList.filter(option=>option.toLowerCase().includes(filterValue));
   }
 
   onSubmit() {

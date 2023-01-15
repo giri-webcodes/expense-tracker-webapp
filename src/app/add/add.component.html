@@ -4,7 +4,13 @@
    
             <mat-form-field appearance="fill">
                 <mat-label>Expense</mat-label>                
-                <input matInput id="expense" required="required" type="text" formControlName="expense">
+                <input matInput id="expense" required="required" type="text"
+                 formControlName="expense"  aria-label="Number" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
               </mat-form-field>
             <br/>
       

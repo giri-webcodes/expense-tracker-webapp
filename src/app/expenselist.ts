@@ -77,3 +77,22 @@ yearList.push({
   id: 2,
   value: '2023'
 });
+
+export const expenseTypes=[
+  "Petrol",
+  "Snacks",
+  "Medical",
+  "Fruits",
+  "Restaurant Bill",
+  "Department Store",
+  "Cash Given",
+  "DTH Recharge",
+  "Mobile Recharge",
+  "Gas Cylinder",
+  "Mobile Postpaid",
+  "Vegetables",
+  "Rice Bag",
+  "Train Ticket",
+  "Amazon",
+  "Swiggy"
+];
