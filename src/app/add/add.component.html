@@ -2,7 +2,7 @@
 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
    
             <mat-form-field appearance="fill">
-                <mat-label>Expense</mat-label>                
+                <mat-label>Add Expense</mat-label>                
                 <input matInput id="expense" required="required" type="text"
                  formControlName="expense"  aria-label="Number" [matAutocomplete]="auto">
               <mat-autocomplete #auto="matAutocomplete">
@@ -29,7 +29,7 @@
                 <textarea matInput id="comment" cols="25" rows="3" placeholder="optional comment" maxlength="50" formControlName="comment"></textarea>            
               </mat-form-field>
              
-       
+          &nbsp;
                <span class="btnspan"><button  type="submit" [disabled]="!expenseForm.valid">Submit</button></span>
                        
                <span class="btnspan"><button   (click)="goToHome()" type="button">Back</button></span>
