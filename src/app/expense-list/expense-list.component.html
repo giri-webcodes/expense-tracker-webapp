@@ -1,19 +1,7 @@
 <div>
 
 <div id="filterdiv">
-    <table>
-        <tbody>
-            <tr>
-                <td>
-                    <h2>{{strMonth}}-{{selectedYear}} | </h2> 
-                </td>             
-                <td>
-                    <h2 >Total Expense: <span style="color:red"> {{totalExpense | currency:'INR' }} </span></h2>
-                </td>               
-            </tr>
-        </tbody>
-    </table>
-    
+   
     <table>
         <tbody>          
           <tr>            
@@ -31,7 +19,9 @@
                     </option>
                 </select>
              </td>
-           
+           <td>
+                <h2 >Total Expense: <span style="color:red"> {{totalExpense | currency:'INR' }} </span></h2>
+            </td>     
           </tr>
         </tbody>
     </table>
