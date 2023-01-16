@@ -1,30 +1,29 @@
 <div id="editContainer">
     <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
-        <h2>Edit Expense</h2>
-       
+
                 <mat-form-field appearance="fill">
-                    <mat-label>Expense</mat-label>                
+                    <mat-label>Update Expense</mat-label>                
                     <input matInput id="expense" required="required" type="text" formControlName="expense">
                   </mat-form-field>
-                <br/>
+                
           
                 <mat-form-field appearance="fill">
                     <mat-label>Amount</mat-label>
                     <input matInput id="amount" required="required" type="number" formControlName="amount">                
                   </mat-form-field>
-          <br/>
+          
             <mat-form-field appearance="fill">
                 <mat-label>Date</mat-label>
                 <input id="date" matInput required="required" type="date" formControlName="date">            
               </mat-form-field>
             
-       <br/>
+       
                 <mat-form-field appearance="fill">
                     <mat-label>Comment</mat-label>
                     <textarea matInput id="comment" cols="25" rows="3" placeholder="optional comment" maxlength="50" formControlName="comment"></textarea>            
                   </mat-form-field>
                  
-           <br/>
+           &nbsp;
                    <span class="btnspan"><button  type="submit" [disabled]="!expenseForm.valid">Submit</button></span>
                            
                    <span class="btnspan"><button   (click)="goToHome()" type="button">Back</button></span>
