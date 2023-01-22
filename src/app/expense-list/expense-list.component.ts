@@ -1,10 +1,12 @@
 import { Component,OnInit,ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { monthList } from '../expenselist';
 import { yearList } from '../expenselist';
 import { Expense } from '../expenselist';
+import { ViewExpenseDialogComponent } from '../view-expense-dialog/view-expense-dialog.component';
 
 @Component({
   selector: 'app-expense-list',
@@ -30,7 +32,7 @@ export class ExpenseListComponent implements OnInit {
    public selectedMonth:number=0;
    public selectedYear:number=0;
 
-   constructor(private router:Router, private route:ActivatedRoute){
+   constructor(private router:Router, private route:ActivatedRoute,public dialog:MatDialog){
    }
 
    ngOnInit(){ 
@@ -85,7 +87,7 @@ export class ExpenseListComponent implements OnInit {
         this.totalExpense=this.totalExpense+x.amount;      
       }      
     });
-
+this.filterList.sort((a,b)=>Number(b.amount)-Number(a.amount))
     this.expenseList.data=this.filterList;     
    }
    
@@ -96,5 +98,18 @@ export class ExpenseListComponent implements OnInit {
    goToEdit(id:Number){
    this.router.navigate(['/expense/edit/'],{queryParams:{expenseId:id,pageIndex:this.pageIndex,
     month:this.selectedMonth,year:this.selectedYear}});
+   }
+
+   viewDialog(id:Number){
+    var expense=this.filterList.find(x=>x.id === id)!
+this.dialog.open(ViewExpenseDialogComponent,{
+  data:{
+   id:expense.id,
+   expense:expense.expense,
+   amount:expense.amount,
+   date:expense.date,
+   comment:expense.comment
+  }
+});
    }
 }

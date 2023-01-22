@@ -20,7 +20,7 @@
                 </select>
              </td>
            <td>
-                <h2 >Total Expense: <span style="color:red"> {{totalExpense | currency:'INR' }} </span></h2>
+                <h4>Total Expense: <span style="color:red"> {{totalExpense | currency:'INR' }} </span></h4>
             </td>     
           </tr>
         </tbody>
@@ -31,12 +31,8 @@
 <table  id="table" matSort mat-table [dataSource]="expenseList">
     
     <ng-container matColumnDef="expense">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef > Expense </th>
-        <td mat-cell *matCellDef="let expenseList">
-            <a (click)="goToEdit(expenseList.id)"  [routerLink]="">
-                {{expenseList.expense}}
-              </a>
-        </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef > Expense </th>        
+    <td mat-cell  *matCellDef="let expenseList"> {{expenseList.expense}} </td>        
     </ng-container>
     
     <ng-container matColumnDef="amount">
@@ -45,15 +41,15 @@
     </ng-container>
 
     <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>Date</th>
-         <td mat-cell *matCellDef="let expenseList">{{expenseList.date | date:'dd/MM/yyyy'}}</td>
+        <th mat-header-cell *matHeaderCellDef>Edit</th>        
+        <td mat-cell *matCellDef="let expenseList">
+            <a (click)="goToEdit(expenseList.id)"  [routerLink]="">
+               Edit
+              </a> |  <a (click)="viewDialog(expenseList.id)"  [routerLink]="">
+                View
+               </a>
+        </td>
     </ng-container>
-
-    <!-- <ng-container matColumnDef="comment">
-        <th mat-header-cell *matHeaderCellDef>Comment</th>
-        <td mat-cell *matCellDef="let expenseList">{{expenseList.comment}}</td>
-    </ng-container> -->
-
     <tr mat-header-row *matHeaderRowDef="headerColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: headerColumns;"></tr>
 </table>
