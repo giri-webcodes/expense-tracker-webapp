@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ExpenseType } from '../expenselist';
+import { ExpenseType, expenseTypes } from '../expenselist';
 
 @Component({
   selector: 'app-expense-type-list',
@@ -25,6 +25,15 @@ export class ExpenseTypeListComponent implements OnInit {
     if(localStorage.getItem('expTypeList') !== null){
       let list:ExpenseType[]= JSON.parse(localStorage.getItem('expTypeList')!);      
        this.expenseTypeList=list;
+     }
+     else{
+      let array:ExpenseType[]=[];
+      var count=1;
+      expenseTypes.forEach(x=>{        
+        array.push({id:count, expense_type:x});
+        count++;
+      });     
+      localStorage.setItem('expTypeList',JSON.stringify(array));
      }
   }
 
