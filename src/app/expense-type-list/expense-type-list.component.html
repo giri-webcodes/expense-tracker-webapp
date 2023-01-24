@@ -1,0 +1,32 @@
+<div id="addExpTypeDiv">
+    <h2>Expense Type</h2>   
+</div>
+<form [formGroup]="expenseTypeForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+        <mat-label>Expense Type</mat-label>
+        <input matInput type="text" autocomplete="off" id="expenseType" required="required" maxlength="15" formControlName="expenseType"/>        
+    </mat-form-field>
+           
+    <button style="margin-left: 1%;"  type="submit" [disabled]="!expenseTypeForm.valid">Submit</button>           
+</form>
+<div id="alert" style="display: none;">
+    <strong>Successful:</strong> Expense Type Added
+  </div>
+<div id="tableDiv">
+    <table id="table">
+        <thead>
+            <tr>
+                <th>
+                    Expense Type
+                </th>
+            </tr>
+        </thead>
+        <tbody>          
+          <tr *ngFor="let item of expenseTypeList">            
+            <td>
+                {{item.expense_type}}
+            </td>                      
+          </tr>
+        </tbody>
+    </table>
+</div>

@@ -17,6 +17,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { ViewExpenseDialogComponent } from './view-expense-dialog/view-expense-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ExpenseTypeListComponent } from './expense-type-list/expense-type-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ExpenseListComponent,
     EditComponent,
     AddComponent,
-    ViewExpenseDialogComponent    
+    ViewExpenseDialogComponent,
+    ExpenseTypeListComponent    
   ],
   imports: [
     BrowserModule,

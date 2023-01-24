@@ -12,6 +12,11 @@ export interface DropDown {
   value: string;
 }
 
+export interface ExpenseType{
+  id:Number;
+  expense_type:string;
+}
+
 export const monthList: DropDown[] = [];
 
 monthList.push({
