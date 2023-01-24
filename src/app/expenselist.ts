@@ -99,5 +99,10 @@ export const expenseTypes=[
   "Rice Bag",
   "Train Ticket",
   "Amazon",
-  "Swiggy"
+  "Swiggy",
+  "Swiggy Instamart",
+  "A2B",
+  "PVR Cinemas",
+  "Kids Car Driving",
+  "Parking Fee"
 ];
