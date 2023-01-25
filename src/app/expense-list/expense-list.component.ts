@@ -17,7 +17,7 @@ import { ViewExpenseDialogComponent } from '../view-expense-dialog/view-expense-
 export class ExpenseListComponent implements OnInit {
   public expenseList=new MatTableDataSource<any>([]);
   
-   headerColumns:string[]=['expense','amount','date'];
+   headerColumns:string[]=['expense','amount','details','edit'];
 
    @ViewChild(MatPaginator)  paginator: MatPaginator;
    monthList=monthList;
