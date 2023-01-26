@@ -12,20 +12,21 @@
             </tr>
             <tr>
                 <td>
-                    <label>Date</label>
-                </td>
-                <td>
-                    {{expense.date | date: 'shortDate'}}
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <label>Comment</label>
                 </td>
                 <td>
                     {{expense.comment}}
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label>Date</label>
+                </td>
+                <td>
+                    {{expense.date | date: 'MMM/dd/yyyy'}}
+                </td>
+            </tr>
+          
         </tbody>
     </table>    
 </mat-dialog-content>

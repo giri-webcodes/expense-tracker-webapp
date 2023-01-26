@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component,OnInit,ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { monthList } from '../expenselist';
@@ -15,11 +17,12 @@ import { ViewExpenseDialogComponent } from '../view-expense-dialog/view-expense-
 })
 
 export class ExpenseListComponent implements OnInit {
-  public expenseList=new MatTableDataSource<any>([]);
+  public expenseList=new MatTableDataSource<Expense>([]);
   
    headerColumns:string[]=['expense','amount','details','edit'];
 
    @ViewChild(MatPaginator)  paginator: MatPaginator;
+   @ViewChild(MatSort) sort: MatSort;
    monthList=monthList;
    strMonth:any;
    yearList=yearList;
@@ -32,7 +35,7 @@ export class ExpenseListComponent implements OnInit {
    public selectedMonth:number=0;
    public selectedYear:number=0;
 
-   constructor(private router:Router, private route:ActivatedRoute,public dialog:MatDialog){
+   constructor(private router:Router, private route:ActivatedRoute,public dialog:MatDialog,private _liveAnnouncer: LiveAnnouncer){
    }
 
    ngOnInit(){ 
@@ -56,6 +59,7 @@ export class ExpenseListComponent implements OnInit {
    ngAfterViewInit(){
    
     this.expenseList.paginator=this.paginator; 
+    this.expenseList.sort=this.sort;
     setTimeout(()=>{
       this.paginator.pageIndex=this.pageIndex;      
       this.getData()
@@ -63,7 +67,20 @@ export class ExpenseListComponent implements OnInit {
     
                     
    }
+    
+   announceSortChange(sortState: Sort) {
+    
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
 
+  applyFilter(event:Event){
+    const filterValue =(event.target as HTMLInputElement).value;
+    this.expenseList.filter= filterValue.trim().toLowerCase();
+  }
       
    public getData(){
             
@@ -84,7 +101,8 @@ export class ExpenseListComponent implements OnInit {
       if(Number(dt.getMonth()+1) == this.selectedMonth && dt.getFullYear() == this.selectedYear)
       {                
         this.filterList.push(x);  
-        this.totalExpense=this.totalExpense+x.amount;      
+        let amount:number=Number(x.amount);
+        this.totalExpense= this.totalExpense+amount;      
       }      
     });
 this.filterList.sort((a,b)=>Number(b.amount)-Number(a.amount))
