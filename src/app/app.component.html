@@ -1,31 +1,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-<p>
-  <mat-toolbar  color="primary"> 
-    <span>  
-    <a  [routerLink]="['/']">
-      <h2 style="color:white">Expense Tracker</h2>
-    </a>
-    </span>
-   <span class="menu">|</span>
-    <span >
-    <a  [routerLink]="['/add']">
-      <h2 style="color:white">Add</h2>
-    </a>
-    </span>
-    <span class="menu">|</span>
-       <span >
-    <a  [routerLink]="" (click)="downloadFile()">
-      <h2 style="color:white">File</h2>
-    </a>
-    </span>
-    <span class="menu">|</span>
-    <span >
- <a  [routerLink]="['/expensetype']">
-   <h2 style="color:white">Type</h2>
- </a>
- </span>
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>    
+      <a  [routerLink]="['/']">
+        Expense Tracker
+      </a>
+      <span class="menu-spacer"></span>
+      <div>
+        <a mat-button [routerLink]="['/add']">Add</a>
+        <a mat-button [routerLink]="" (click)="downloadFile()">File</a>
+        <a mat-button [routerLink]="['/expensetype']">Type</a>          
+      </div>
+    </mat-toolbar-row>    
   </mat-toolbar>
-</p>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
