@@ -48,7 +48,7 @@ export class AddComponent implements OnInit {
   }
 
   private _filter(value: string): ExpenseType[]{     
-    return this.expenseTypeList.filter(option=>option.expense_type.toLowerCase().includes(value));
+    return this.expenseTypeList.filter(option=>option.expense_type.includes(value));
   }
 
   displayFunc(expenseType:ExpenseType){    
