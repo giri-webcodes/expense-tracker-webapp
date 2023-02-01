@@ -3,8 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import { Expense } from '../expenselist';
-import {expenseTypes} from '../expenselist';
+import { Expense, ExpenseType } from '../expenselist';
 
 @Component({
   selector: 'app-add',
@@ -16,8 +15,8 @@ export class AddComponent implements OnInit {
   pageIndex: Number = 0;
   selectedMonth: Number = 0;
   selectedYear: Number = 0;
-  filteredOptions: Observable<string[]>;
-  expTypeList=expenseTypes;
+  filteredOptions: Observable<ExpenseType[]>;
+  expenseTypeList:ExpenseType[]=[];
 
   expenseForm = new FormGroup({
     expense: new FormControl(''),
@@ -36,6 +35,11 @@ export class AddComponent implements OnInit {
       this.selectedYear = params['year'];
     });
 
+    if(localStorage.getItem('expTypeList') !== null){
+      let list:ExpenseType[]= JSON.parse(localStorage.getItem('expTypeList')!);      
+       this.expenseTypeList=list;
+     }
+
     //autocomplete
     this.filteredOptions=this.expenseForm.controls.expense.valueChanges.pipe(
       startWith(''),
@@ -43,9 +47,12 @@ export class AddComponent implements OnInit {
     );
   }
 
-  private _filter(value: string): string[]{
-    const filterValue=value.toLowerCase();
-    return this.expTypeList.filter(option=>option.toLowerCase().includes(filterValue));
+  private _filter(value: string): ExpenseType[]{     
+    return this.expenseTypeList.filter(option=>option.expense_type.toLowerCase().includes(value));
+  }
+
+  displayFunc(expenseType:ExpenseType){    
+return expenseType && expenseType.expense_type ? expenseType.expense_type:'';
   }
 
   onSubmit() {
@@ -60,7 +67,9 @@ export class AddComponent implements OnInit {
     if(found != -1){
       count = count +1;
     }
-    array.push({id:count,expense:this.expenseForm.value.expense!,amount:parseFloat(this.expenseForm.value.amount!),
+    var etype=<ExpenseType><unknown>this.expenseForm.value.expense;
+    
+    array.push({id:count,expense:etype.expense_type,amount:parseFloat(this.expenseForm.value.amount!),
       date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment!});
 
       localStorage.setItem('expList',JSON.stringify(array));

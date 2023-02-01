@@ -1,4 +1,7 @@
-<div id="editContainer">
+<div class="editContainer">
+  <div class="editContainer" id="alert" style="display: none;">
+    <strong>Successful:</strong> Expense Updated
+  </div>
   <br/>
     <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
 
@@ -29,8 +32,5 @@
                            
                    <span class="btnspan"><button   (click)="goToHome()" type="button">Back</button></span>
                
-      </form>
-      <div id="alert" style="display: none;">
-        <strong>Successful:</strong> Expense Updated
-      </div>
+      </form>      
     </div>

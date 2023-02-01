@@ -23,18 +23,28 @@ export class ExpenseTypeListComponent implements OnInit {
   public getData(){
     //local storage
     if(localStorage.getItem('expTypeList') !== null){
-      let list:ExpenseType[]= JSON.parse(localStorage.getItem('expTypeList')!);      
+      let list:ExpenseType[]= JSON.parse(localStorage.getItem('expTypeList')!);
+       if(list.length < 10){
+        this.populateExpenseType();
+       }
+       else{      
        this.expenseTypeList=list;
+       }
      }
      else{
-      let array:ExpenseType[]=[];
-      var count=1;
-      expenseTypes.forEach(x=>{        
-        array.push({id:count, expense_type:x});
-        count++;
-      });     
-      localStorage.setItem('expTypeList',JSON.stringify(array));
+       this.populateExpenseType();
      }
+  }
+
+  populateExpenseType(){
+    let array:ExpenseType[]=[];
+    var count=1;
+    expenseTypes.forEach(x=>{        
+      array.push({id:count, expense_type:x});
+      count++;
+    });     
+    localStorage.setItem('expTypeList',JSON.stringify(array));
+    this.expenseTypeList=array;
   }
 
   public onSubmit(){

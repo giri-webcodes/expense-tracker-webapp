@@ -1,4 +1,7 @@
-<div id="addContainer">
+<div class="addContainer">
+  <div class="addContainer" id="alert" style="display: none;">
+    <strong>Successful:</strong> Expense Added
+  </div>
   <br/>
 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
    
@@ -6,9 +9,9 @@
                 <mat-label>Add Expense</mat-label>                
                 <input matInput id="expense" required="required" type="text"
                  formControlName="expense"  aria-label="Number" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunc">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                  {{option}}
+                  {{option.expense_type}}
                 </mat-option>
               </mat-autocomplete>
               </mat-form-field>
@@ -36,8 +39,5 @@
                        
                <span class="btnspan"><button   (click)="goToHome()" type="button">Back</button></span>
            
-  </form>
-  <div id="alert" style="display: none;">
-    <strong>Successful:</strong> Expense Added
-  </div>
+  </form>  
 </div>
