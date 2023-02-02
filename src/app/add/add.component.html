@@ -2,11 +2,11 @@
   <div class="addContainer" id="alert" style="display: none;">
     <strong>Successful:</strong> Expense Added
   </div>
-  <br/>
+  <h2 class="addContainer">Add Expense</h2>
 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
    
             <mat-form-field appearance="fill">
-                <mat-label>Add Expense</mat-label>                
+                <mat-label>Expense</mat-label>                
                 <input matInput id="expense" required="required" type="text"
                  formControlName="expense"  aria-label="Number" [matAutocomplete]="auto">
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunc">

@@ -70,8 +70,8 @@ return expenseType && expenseType.expense_type ? expenseType.expense_type:'';
     }
     var etype=<ExpenseType><unknown>this.expenseForm.value.expense;
     
-    array.push({id:count,expense:etype.expense_type,amount:parseFloat(this.expenseForm.value.amount!),
-      date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment!});
+    array.push({id:count,expense:etype.expense_type.trim(),amount:parseFloat(this.expenseForm.value.amount!),
+      date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment!.trim()});
 
       localStorage.setItem('expList',JSON.stringify(array));
 

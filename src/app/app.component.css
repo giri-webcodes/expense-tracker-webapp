@@ -7,11 +7,7 @@
     color:white;
   }
 
-  .mat-toolbar-row > div > a{
+  .menu{
     color:white;
     padding-right: 5%;
-  }
-
-  .mat-toolbar-row > div > a:nth-child(2){
-    color:red;
   }

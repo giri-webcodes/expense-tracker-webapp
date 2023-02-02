@@ -47,8 +47,8 @@ export class EditComponent implements OnInit {
       let list:Expense[]= JSON.parse(localStorage.getItem('expList')!); 
        let index = list.findIndex(x=>x.id===this.id);       
        list.splice(index,1);                    
-      list.push({id:this.id,expense:this.expenseForm.value.expense!,amount:parseFloat(this.expenseForm.value.amount!),
-        date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment});          
+      list.push({id:this.id,expense:this.expenseForm.value.expense!.trim(),amount:parseFloat(this.expenseForm.value.amount!),
+        date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment.trim()});          
       localStorage.setItem('expList',JSON.stringify(list));
       var alert = document.getElementById("alert")!;     
       alert.style.display = 'block';          
