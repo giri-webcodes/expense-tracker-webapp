@@ -54,7 +54,7 @@ export class EditComponent implements OnInit {
       alert.style.display = 'block';          
 setTimeout(function (){
   alert.style.display = 'none'; 
-},1000);
+},2000);
 
 document.getElementById('expense')?.focus();
   }

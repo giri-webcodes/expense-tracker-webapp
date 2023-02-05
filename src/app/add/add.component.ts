@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Expense, ExpenseType } from '../expenselist';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-add',
@@ -21,14 +22,14 @@ export class AddComponent implements OnInit {
   expenseForm = new FormGroup({
     expense: new FormControl(''),
     amount: new FormControl(''),
-    date: new FormControl(''),
+    date: new FormControl(formatDate(new Date(),'yyyy-MM-dd','en')),
     comment: new FormControl('')
   });
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-
+    
     this.route.queryParams.subscribe(params => {
       this.pageIndex = params['pageIndex'];
       this.selectedMonth = params['month'];
@@ -79,9 +80,8 @@ return expenseType && expenseType.expense_type ? expenseType.expense_type:'';
       alert.style.display = 'block';          
 setTimeout(function (){
   alert.style.display = 'none'; 
-},1000);
+},2000);
 this.expenseForm.reset();
-document.getElementById('expense')?.focus();
 
   }
 
