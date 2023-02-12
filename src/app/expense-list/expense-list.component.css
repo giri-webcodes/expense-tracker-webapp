@@ -34,3 +34,7 @@ mat-paginator.mat-paginator{
 #table tr:hover {
     background-color:azure;
 }
+
+.btnspan{
+    padding-left: 1%;
+}

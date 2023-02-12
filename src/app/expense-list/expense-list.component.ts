@@ -118,6 +118,10 @@ this.filterList.sort((a,b)=>Number(b.amount)-Number(a.amount))
     month:this.selectedMonth,year:this.selectedYear}});
    }
 
+   goToAdd(){
+    this.router.navigate(['/add']);
+   }
+
    viewDialog(id:Number){
     var expense=this.filterList.find(x=>x.id === id)!
 this.dialog.open(ViewExpenseDialogComponent,{
