@@ -81,8 +81,25 @@ return expenseType && expenseType.expense_type ? expenseType.expense_type:'';
 setTimeout(function (){
   alert.style.display = 'none'; 
 },2000);
-this.expenseForm.reset();
 
+ this.resetForm();
+  }
+
+  resetForm(){
+    if(localStorage.getItem('expTypeList') !== null){
+      let list:ExpenseType[]= JSON.parse(localStorage.getItem('expTypeList')!);      
+       this.expenseTypeList=list;
+     }
+    
+      //autocomplete
+      this.filteredOptions=this.expenseForm.controls.expense.valueChanges.pipe(
+        startWith(''),
+        map(value=>this._filter(value || '')),
+      );
+    
+     this.expenseForm.reset();
+
+     this.expenseForm.controls.date.setValue(formatDate(new Date(),'yyyy-MM-dd','en'));
   }
 
   goToHome() {
