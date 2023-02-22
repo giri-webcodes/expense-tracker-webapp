@@ -1,26 +1,51 @@
-#table {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: auto;    
-  }
+
 
 #tableDiv, #addExpTypeDiv{
     padding-left: 2%;
 }  
+
+.mat-paginator {
+  display: flex;
+  justify-content: left;
+} 
   
-  #table td, #table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #table tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #table tr:hover {background-color: #ddd;}
-  
-  #table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
-  }
+#table {
+  width: 100%;
+  padding: 0% 2%;
+  background-color: mintcream;
+}
+#filterdiv{
+  padding-left: 2%;
+}
+
+#table th{
+  background-color: mintcream;
+  border:none !important;
+  color:black;
+}
+
+#table td{    
+  color:black;    
+  border: 1px solid aliceblue;   
+}
+
+mat-paginator.mat-paginator{
+  background-color: mintcream;
+  border: 1px solid aliceblue;
+}
+
+/* #table  td:nth-child(2){	
+  color:coral;
+} */
+
+/* #table tr:nth-child(even) {
+  background-color: #f2f2f2;
+} */
+
+#table tr:hover {
+  background-color:azure;
+}
+
+.btnspan{
+  padding-left: 1%;
+}

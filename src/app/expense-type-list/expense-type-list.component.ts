@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ExpenseType, expenseTypes } from '../expenselist';
 
 @Component({
@@ -8,15 +10,26 @@ import { ExpenseType, expenseTypes } from '../expenselist';
   styleUrls: ['./expense-type-list.component.css']
 })
 export class ExpenseTypeListComponent implements OnInit {
-  expenseTypeList:ExpenseType[]=[];
+  public expenseTypeList = new MatTableDataSource<ExpenseType>([]);
   expenseTypeForm = new FormGroup({
      expenseType: new FormControl('')
   });
+  headerColumns:string[]=['expense_type'];
+  @ViewChild(MatPaginator) paginator:MatPaginator;
+  pageIndex=0;
 
   constructor() { }
 
   ngOnInit(): void {
+    //this.getData();
+  }
+
+  ngAfterViewInit(){
+    this.expenseTypeList.paginator=this.paginator;
+    setTimeout(()=>{
+    this.paginator.pageIndex=this.pageIndex;
     this.getData();
+    });
   }
 
 
@@ -27,8 +40,9 @@ export class ExpenseTypeListComponent implements OnInit {
        if(list.length < 10){
         this.populateExpenseType();
        }
-       else{      
-       this.expenseTypeList=list;
+       else{
+        list.sort((a,b)=>Number(b.id)-Number(a.id));      
+       this.expenseTypeList.data=list;
        }
      }
      else{
@@ -44,7 +58,7 @@ export class ExpenseTypeListComponent implements OnInit {
       count++;
     });     
     localStorage.setItem('expTypeList',JSON.stringify(array));
-    this.expenseTypeList=array;
+    this.expenseTypeList.data=array;
   }
 
   public onSubmit(){
@@ -71,6 +85,10 @@ alert.style.display = 'none';
 this.expenseTypeForm.reset();
 document.getElementById('expenseType')?.focus();
 this.getData();
+  }
+
+  pageEvent(event:PageEvent){
+    this.pageIndex=event.pageIndex;
   }
 
 }
