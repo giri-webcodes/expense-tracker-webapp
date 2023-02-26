@@ -1,0 +1,10 @@
+canvas {  /* or some other selector */
+    width: 400px;
+    height: 500px;
+    padding: 5px;
+    padding-left: 0px;
+ }
+
+ .reportContainer{
+    padding: 0% 2%;
+}
