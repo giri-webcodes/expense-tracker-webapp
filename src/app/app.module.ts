@@ -18,6 +18,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { ViewExpenseDialogComponent } from './view-expense-dialog/view-expense-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExpenseTypeListComponent } from './expense-type-list/expense-type-list.component';
+import { ReportComponent } from './report/report.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ExpenseTypeListComponent } from './expense-type-list/expense-type-list.
     EditComponent,
     AddComponent,
     ViewExpenseDialogComponent,
-    ExpenseTypeListComponent    
+    ExpenseTypeListComponent,
+    ReportComponent    
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { ExpenseTypeListComponent } from './expense-type-list/expense-type-list.
     MatInputModule,
     MatSortModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
