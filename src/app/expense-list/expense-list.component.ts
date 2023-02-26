@@ -122,6 +122,10 @@ this.filterList.sort((a,b)=>Number(b.amount)-Number(a.amount))
     this.router.navigate(['/add']);
    }
 
+   goToReport(){
+    this.router.navigate(['/report']);
+   }
+
    viewDialog(id:Number){
     var expense=this.filterList.find(x=>x.id === id)!
 this.dialog.open(ViewExpenseDialogComponent,{
