@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { Expense } from '../expenselist';
 
 @Component({
   selector: 'app-report',
@@ -10,6 +11,50 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class ReportComponent {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  expenseList:Expense[]=[];
+  labelArray:string[]=[];
+  amountArray:number[]=[];
+  
+
+  ngOnInit(){ 
+    this.getData();
+  }
+
+  public getData(){
+
+     //local storage
+     if(localStorage.getItem('expList') !== null){
+      let list:Expense[]= JSON.parse(localStorage.getItem('expList')!);      
+       this.expenseList=list;
+     }
+
+     var groupBy = function(xs:any, key:any) {
+      return xs.reduce(function(rv:any, x:any) {
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+      }, {});
+    };
+    
+  const grouped = groupBy(this.expenseList,"expense");
+    //console.log(grouped);
+
+    let groupedArray = Object.keys(grouped).map((key) => [key, grouped[key]]);
+//console.log(groupedArray);
+   
+       groupedArray.forEach(x=>{
+        this.labelArray.push(x[0]);
+       let amount:Number=0;
+        //console.log(x[1]);
+        x[1].forEach(function(e:Expense) {
+          amount=+amount + +e.amount;
+        });
+        this.amountArray.push(Number(amount));
+         //console.log(x[0]);
+         //console.log(x[1]);
+       });
+  }
+
+  
 
   // Pie
   public pieChartOptions: ChartConfiguration['options'] = {
@@ -29,10 +74,10 @@ export class ReportComponent {
       },
     }
   };
-  public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: [ [ 'Download', 'Sales' ], [ 'In', 'Store', 'Sales' ], 'Mail Sales' ],
-    datasets: [ {
-      data: [ 300, 500, 100 ]
+  public pieChartData: ChartData<'pie', number[], string | string[]> = {    
+    labels: this.labelArray,
+    datasets: [ {      
+      data: this.amountArray
     } ]
   };
   public pieChartType: ChartType = 'pie';
