@@ -123,7 +123,12 @@ this.filterList.sort((a,b)=>Number(b.amount)-Number(a.amount))
    }
 
    goToReport(){
-    this.router.navigate(['/report']);
+    this.router.navigate(['/report'],{
+      queryParams:{
+        month:this.selectedMonth,
+        year:this.selectedYear
+      }
+    });
    }
 
    viewDialog(id:Number){

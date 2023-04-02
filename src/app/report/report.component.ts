@@ -3,6 +3,7 @@ import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { Expense } from '../expenselist';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-report',
@@ -14,9 +15,24 @@ export class ReportComponent {
   expenseList:Expense[]=[];
   labelArray:string[]=[];
   amountArray:number[]=[];
+  month:Number;
+  year:Number;
+  filterList:Expense[]=[];
   
+  /**
+   *
+   */
+  constructor(private router:Router, private route:ActivatedRoute) {    
+  }
 
   ngOnInit(){ 
+    this.route.queryParams.subscribe(params=>{
+      if(params['month'])
+      {        
+          this.month=params['month'];
+          this.year=params['year'];          
+      }
+  });
     this.getData();
   }
 
@@ -27,6 +43,19 @@ export class ReportComponent {
       let list:Expense[]= JSON.parse(localStorage.getItem('expList')!);      
        this.expenseList=list;
      }
+
+    // filter by selected month
+     this.expenseList.forEach(x=>{
+      var dt = new Date(x.date);            
+      if(Number(dt.getMonth()+1) == this.month && dt.getFullYear() == this.year)
+      {                
+        this.filterList.push(x);            
+      }      
+    });
+
+//this.filterList.sort((a,b)=>Number(b.amount)-Number(a.amount));
+    this.expenseList=this.filterList;     
+   
 
      var groupBy = function(xs:any, key:any) {
       return xs.reduce(function(rv:any, x:any) {
