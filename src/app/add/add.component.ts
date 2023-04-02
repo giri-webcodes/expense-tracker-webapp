@@ -49,7 +49,11 @@ export class AddComponent implements OnInit {
   }
 
   private _filter(value: string): ExpenseType[]{  
-    let filterValue = value.toLowerCase();   
+    let filterValue = "";    
+    if(typeof value==='string'){
+    filterValue = value.toLowerCase();   
+    }
+
     return this.expenseTypeList.filter(option=>option.expense_type.toLowerCase().includes(filterValue));
   }
 
@@ -70,9 +74,17 @@ return expenseType && expenseType.expense_type ? expenseType.expense_type:'';
       count = count +1;
     }
     var etype=<ExpenseType><unknown>this.expenseForm.value.expense;
+
+    let comment = this.expenseForm.value.comment;
+    if(comment == null){
+      comment=""
+    } else{
+      comment=this.expenseForm.value.comment?.trim();
+    }
+
     
     array.push({id:count,expense:etype.expense_type.trim(),amount:parseFloat(this.expenseForm.value.amount!),
-      date:new Date(this.expenseForm.value.date!),comment:this.expenseForm.value.comment!.trim()});
+      date:new Date(this.expenseForm.value.date!),comment:comment!});
 
       localStorage.setItem('expList',JSON.stringify(array));
 
