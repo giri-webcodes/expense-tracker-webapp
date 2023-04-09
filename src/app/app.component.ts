@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { saveAs } from 'file-saver';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,10 @@ import { saveAs } from 'file-saver';
 })
 export class AppComponent {
   title = 'expense-tracker';
+
+  constructor(private router:Router){
+
+  }
 
   downloadFile(){
     var year = new Date().getFullYear();
@@ -18,5 +23,16 @@ export class AppComponent {
     var filename = "expense_"+year+".json";
     saveAs(blob, filename);
   }
+
+  goToReport(){
+    var year = new Date().getFullYear();
+    var month= new Date().getMonth();
+    this.router.navigate(['/report'],{
+      queryParams:{
+        month:month+1,
+        year:year
+      }
+    });
+   }
 
 }
