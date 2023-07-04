@@ -20,7 +20,11 @@
   <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
       <mat-icon>menu</mat-icon>
   </button>
-  <span>Expense Tracker</span>
+  <span>
+    <a class="whiteLink" [routerLink]="['/']">
+        Expense Tracker
+    </a>
+  </span>
 <span class="toolbar-item-spacer"></span>
   <button mat-icon-button matTooltip="Add"> 
     
