@@ -21,7 +21,14 @@
       <mat-icon>menu</mat-icon>
   </button>
   <span>Expense Tracker</span>
-  <span class="toolbar-item-spacer"></span>
+  <span class="toolbar-item-spacer"></span> 
+  <button mat-icon-button matTooltip="Add">
+      <a 
+            [routerLink]="['/add']" 
+           >           
+            Add
+          </a>
+  </button>
  <!-- <button mat-icon-button matTooltip="Like">
       <mat-icon>favorite</mat-icon>
   </button>
