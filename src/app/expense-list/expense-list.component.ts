@@ -130,4 +130,13 @@ this.dialog.open(ViewExpenseDialogComponent,{
   }
 });
    }
+
+  goToReport(){
+    this.router.navigate(['/report'],{
+      queryParams:{
+        month:this.selectedMonth,
+        year:this.selectedYear
+      }
+    });
+   }
 }
