@@ -21,7 +21,13 @@
              </td>
            <td>
                 <h4>Total: <span style="color:red"> {{totalExpense | currency:'INR' }} </span></h4>
-            </td>     
+            </td>    
+            <td>
+                        <a (click)="goToReport()"           
+           >
+            Report
+          </a>
+              </td>
           </tr>
         </tbody>
     </table>
