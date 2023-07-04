@@ -31,6 +31,10 @@ p {
 
 /* Hyperlink */
 
+. whiteLink{
+  color: white;
+}
+
 a {
   cursor: pointer;
   color: #1976d2;
