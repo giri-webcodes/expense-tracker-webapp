@@ -83,6 +83,11 @@ yearList.push({
   value: '2023'
 });
 
+yearList.push({
+  id: 3,
+  value: '2024'
+});
+
 export const expenseTypes=[
   "Petrol",
   "Snacks",
